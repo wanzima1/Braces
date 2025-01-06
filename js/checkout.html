@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Purchase Items</title>
+  <style>
+    /* Global Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+
+    body {
+      background-color: #f8f8f8;
+      color: #333;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    /* Header Styling */
+    .main-header {
+      background-color: #1A2A38;
+      color: #fff;
+      padding: 20px 0;
+      position: relative;
+    }
+
+    .main-info {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+
+    .logo img {
+      height: 250px;
+      width: 250px;
+    }
+
+    .site-title {
+      font-size: 36px;
+      font-weight: 700;
+      margin-left: 120px;
+      text-transform: uppercase;
+      animation: moveLeftToRight 5s infinite alternate;
+    }
+
+    @keyframes moveLeftToRight {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(50%);
+      }
+    }
+
+    /* Shop Section */
+    .shop-section {
+      padding: 40px;
+      background: #fff;
+      margin: 20px auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 1200px;
+    }
+
+    .shop-section h2 {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .product-list {
+      display: flex;
+      justify-content: space-around;
+      gap: 20px;
+    }
+
+    .product-card {
+      background-color: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      width: 45%;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: scale(1.05);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .product-card h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .product-card p {
+      font-size: 16px;
+      color: #E67E22;
+    }
+
+    .btn {
+      background-color: #E67E22;
+      color: #fff;
+      padding: 12px 30px;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: 500;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #34495E;
+    }
+
+    /* Cart Section */
+    .cart-section {
+      padding: 40px;
+      background: #fff;
+      margin: 20px auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+    }
+
+    .cart-section h2 {
+      text-align: center;
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    /* Footer Section */
+    .main-footer {
+      background-color: #1A2A38;
+      color: #fff;
+      padding: 50px 0;
+      font-size: 14px;
+    }
+
+    .main-footer .container {
+      display: flex;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .col-4 {
+      width: 30%;
+    }
+
+    .sns {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sns li {
+      display: inline-block;
+      margin-right: 20px;
+    }
+
+    .sns i {
+      font-size: 20px;
+      color: #fff;
+    }
+
+    .sns i:hover {
+      color: #E67E22;
+    }
+
+    /* Scroll to Top Button */
+    #goTop {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: #E67E22;
+      color: white;
+      border-radius: 50%;
+      padding: 15px;
+      font-size: 24px;
+      cursor: pointer;
+      display: none;
+    }
+
+    #goTop:hover {
+      background-color: #34495E;
+    }
+
+    /* Active State for Scroll to Top */
+    #goTop.show {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <header class="main-header">
+    <div class="main-info">
+      <div class="logo">
+        <img src="./images/WhatsApp%20Image%202024-12-19%20at%2008.21.08_7aa0a1c1.jpg" alt="Shop Logo">
+      </div>
+      <h1 class="site-title">Purchase Items</h1>
+    </div>
+  </header>
+
+  <main>
+    <section class="shop-section">
+      <h2>Available Products</h2>
+      <div class="product-list">
+        <!-- Example Product Cards -->
+        <div class="product-card">
+          <img src="item1.jpg" alt="Product 1">
+          <h3>Product Name 1</h3>
+          <p>Price: $50</p>
+          <button class="btn add-to-cart" data-product="Product Name 1" data-price="50">Add to Cart</button>
+        </div>
+        <div class="product-card">
+          <img src="item2.jpg" alt="Product 2">
+          <h3>Product Name 2</h3>
+          <p>Price: $75</p>
+          <button class="btn add-to-cart" data-product="Product Name 2" data-price="75">Add to Cart</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="cart-section">
+      <h2>Your Cart</h2>
+      <div id="cart-container">
+        <p>Your cart is empty.</p>
+      </div>
+      <div id="cart-total" style="margin-top: 20px; font-weight: bold;">Total: $0</div>
+      <button id="checkoutButton" class="btn" style="display: none;">Proceed to Checkout</button>
+    </section>
+  </main>
+
+  <footer class="main-footer">
+    <div class="container">
+      <div class="col-4">
+        <img src="./images/WhatsApp%20Image%202024-12-19%20at%2008.21.08_7aa0a1c1.jpg" alt="Shop Logo" style="max-width: 150px;">
+      </div>
+      <div class="col-4">
+        <ul class="sns">
+          <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+          <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+          <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+        </ul>
+      </div>
+      <div class="col-4">
+        <p>Contact Us: info@yourshop.com | +233 123 456 789</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Cart Data
+    let cart = [];
+    let cartTotal = 0;
+
+    // Add to Cart Functionality
+    const addToCartButtons = document.querySelectorAll('.add-to-cart');
+    const cartContainer = document.getElementById('cart-container');
+    const cartTotalElement = document.getElementById('cart-total');
+    const checkoutButton = document.getElementById('checkoutButton');
+
+    addToCartButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const product = button.getAttribute('data-product');
+        const price = parseFloat(button.getAttribute('data-price'));
+
+        // Add item to cart
+        cart.push({ product, price });
+        cartTotal += price;
+
+        // Update cart UI
+        updateCartUI();
+      });
+    });
+
+    // Update Cart UI
+    function updateCartUI() {
+      if (cart.length === 0) {
+        cartContainer.innerHTML = '<p>Your cart is empty.</p>';
+        cartTotalElement.textContent = 'Total: $0';
+        checkoutButton.style.display = 'none';
+      } else {
+        cartContainer.innerHTML = cart.map(item => `<p>${item.product} - $${item.price.toFixed(2)}</p>`).join('');
+        cartTotalElement.textContent = `Total: $${cartTotal.toFixed(2)}`;
+        checkoutButton.style.display = 'block';
+      }
+    }
+
+    // Checkout Button Click Event
+    checkoutButton.addEventListener('click', () => {
+      // Redirect to the payment page
+      window.location.href = 'payment.html';
+    });
+  </script>
+</body>
+</html>

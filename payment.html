@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Form</title>
+  <style>
+    /* Global Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+
+    body {
+      background-color: #f8f8f8;
+      color: #333;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    header, footer {
+      background-color: #1A2A38;
+      color: #fff;
+    }
+
+    .main-header {
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    .main-header .logo img {
+      width: 120px;
+      height: auto;
+      margin-bottom: 15px;
+    }
+
+    .site-title {
+      font-size: 28px;
+      font-weight: 700;
+      text-transform: uppercase;
+      animation: moveLeftRight 2s infinite;
+    }
+
+    @keyframes moveLeftRight {
+      0%, 100% {
+        transform: translateX(0);
+      }
+      50% {
+        transform: translateX(10px);
+      }
+    }
+
+    main {
+      padding: 40px;
+      max-width: 600px;
+      margin: 20px auto;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      font-size: 24px;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .info {
+      margin-bottom: 20px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    form label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    form select, form input, form button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    form button {
+      background-color: #E67E22;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      animation: blink 1s infinite;
+      transition: background-color 0.3s;
+    }
+
+    form button:hover {
+      background-color: #34495E;
+    }
+
+    @keyframes blink {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.5;
+      }
+    }
+
+    .confirmation-message {
+      display: none;
+      color: green;
+      font-size: 16px;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    footer {
+      padding: 20px 0;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .sns {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      margin: 10px 0;
+    }
+
+    .sns li {
+      margin: 0 10px;
+    }
+
+    .sns a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 18px;
+    }
+
+    .sns a:hover {
+      color: #E67E22;
+    }
+
+    .go-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #E67E22;
+      color: white;
+      font-size: 18px;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 50%;
+      display: none;
+      cursor: pointer;
+    }
+
+    .go-top.show {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <header class="main-header">
+    <div class="logo">
+      <img src="./images/WhatsApp%20Image%202024-12-19%20at%2008.21.08_7aa0a1c1.jpg" alt="Shop Logo">
+    </div>
+    <h1 class="site-title">Order From The Best</h1>
+  </header>
+
+  <main>
+    <h2>Order For Braces</h2>
+    <p class="info">
+      Payment is accepted on delivery in Accra, Tema, and Kasoa. For pickups, visit Dansoman-Control. Customers outside Accra are required to make advance payments.
+      <strong>Please reference your name when paying via Mobile Money also details will be submitted via Email</strong>
+    </p>
+    <form id="paymentForm">
+      <label for="location">Select Delivery Location:</label>
+      <select id="location" name="location" required>
+        <option value="" disabled selected>Choose Location</option>
+        <option value="Accra">Accra</option>
+        <option value="Tema">Tema</option>
+        <option value="Kasoa">Kasoa</option>
+        <option value="Outside Accra">Outside Accra</option>
+      </select>
+
+      <label for="paymentMethod">Select Payment Method:</label>
+      <select id="paymentMethod" name="paymentMethod" required>
+        <option value="" disabled selected>Choose Payment Method</option>
+        <option value="Cash on Delivery">Cash on Delivery</option>
+        <option value="Mobile Money">Mobile Money</option>
+      </select>
+
+      <div id="paymentDetails" style="display: none;"></div>
+      <div id="phoneNumberDiv" style="display: none;">
+        <label for="phoneNumber">Phone Number:</label>
+        <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Enter your phone number" required>
+      </div>
+
+      <button type="submit">Confirm Payment</button>
+    </form>
+    <p id="confirmationMessage" class="confirmation-message">Thank you! Your payment has been processed.</p>
+  </main>
+
+  <footer>
+    <ul class="sns">
+      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+      <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+    </ul>
+    <p>Contact Us: calebowusu333@gmail.com | +233 244266271</p>
+  </footer>
+
+  <button id="goTop" class="go-top">↑</button>
+
+  <script>
+    const paymentForm = document.getElementById('paymentForm');
+    const locationSelect = document.getElementById('location');
+    const paymentMethodSelect = document.getElementById('paymentMethod');
+    const paymentDetails = document.getElementById('paymentDetails');
+    const phoneNumberDiv = document.getElementById('phoneNumberDiv');
+    const confirmationMessage = document.getElementById('confirmationMessage');
+
+    paymentMethodSelect.addEventListener('change', () => {
+      paymentDetails.innerHTML = '';
+      paymentDetails.style.display = 'none';
+      phoneNumberDiv.style.display = 'none';  // Hide phone number field initially
+
+      if (paymentMethodSelect.value === 'Mobile Money') {
+        paymentDetails.innerHTML = `
+          <label for="mobileMoneyNumber">Mobile Money Number:</label>
+          <input type="text" id="mobileMoneyNumber" name="mobileMoneyNumber" placeholder="Enter your Mobile Money number" required>
+        `;
+        paymentDetails.style.display = 'block';
+      } else if (paymentMethodSelect.value === 'Cash on Delivery') {
+        phoneNumberDiv.style.display = 'block';  // Show phone number field for COD
+      }
+    });
+
+    paymentForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      // Gather form data
+      const location = locationSelect.value;
+      const paymentMethod = paymentMethodSelect.value;
+      const mobileMoneyNumber = document.getElementById('mobileMoneyNumber')?.value || 'N/A';
+      const phoneNumber = document.getElementById('phoneNumber')?.value || 'N/A';
+
+      // Construct email details
+      const adminEmail = "calebowusu333@gmail.com"; // Replace with your admin email
+      const subject = encodeURIComponent("Payment Confirmation");
+      const body = encodeURIComponent(
+        `Payment Details:\n\n` +
+        `Delivery Location: ${location}\n` +
+        `Payment Method: ${paymentMethod}\n` +
+        `Mobile Money Number: ${mobileMoneyNumber}\n` +
+        `Phone Number: ${phoneNumber}\n\n` +
+        `Please review the details.`
+      );
+
+      // Redirect to email client
+      window.location.href = `mailto:${adminEmail}?subject=${subject}&body=${body}`;
+    });
+
+    const goTopButton = document.getElementById('goTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        goTopButton.classList.add('show');
+      } else {
+        goTopButton.classList.remove('show');
+      }
+    });
+
+    goTopButton.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>
