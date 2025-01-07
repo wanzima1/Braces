@@ -1,0 +1,502 @@
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif; /* Clean professional font */
+}
+
+body {
+  background-color: #f8f8f8; /* Lighter background */
+  color: #333;
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+title {
+  color: #E67E22;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* Header Styling */
+.main-header {
+  background-color: #1A2A38; /* Dark, professional color */
+  color: #fff;
+  padding: 20px 0;
+  position: relative;
+}
+
+.main-info {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.logo img {
+  height: 150px;
+  width: 150px; /* Keep logo simple */
+}
+
+/* Title Styling */
+.site-title {
+  font-size: 36px;
+  font-weight: 700;
+  margin-left: 120px; /* Space for logo */
+  text-transform: uppercase;
+  animation: moveLeftToRight 5s infinite alternate;
+}
+
+/* Animation for Title Moving Left to Right */
+@keyframes moveLeftToRight {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(50%);
+  }
+}
+
+/* Navigation Styling */
+.main-nav {
+  background-color: #2C3E50;
+  text-align: center;
+  padding: 15px 0;
+}
+
+.main-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.main-nav ul li {
+  display: inline-block;
+  margin: 0 20px;
+}
+
+.main-nav a {
+  color: #fff;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.main-nav a.active, .main-nav a:hover {
+  background-color: #E67E22;
+  border-radius: 4px;
+}
+
+/* Key Visual Section */
+.kv {
+  background-color: #2980B9;
+  color: #fff;
+  padding: 80px 0;
+  text-align: center;
+}
+
+.kv .slider-banner {
+  position: relative;
+}
+
+.kv .item-kv-txt h2 {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.kv .item-kv-txt h3 {
+  font-size: 24px;
+  margin-bottom: 30px;
+  font-weight: 300;
+}
+
+/* Keyframes for Blinking Effect */
+@keyframes blink {
+  0% {
+    background-color: #E67E22; /* Original Color */
+    color: #fff;
+  }
+  50% {
+    background-color: #2980B9; /* Alternate Color */
+    color: #fff;
+  }
+  100% {
+    background-color: #E67E22; /* Original Color */
+    color: #fff;
+  }
+}
+
+/* Button Styles with Blinking Animation */
+.kv .btn {
+  background-color: #E67E22;
+  color: #fff;
+  padding: 12px 30px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: 500;
+  animation: blink 1.5s infinite; /* Add animation here */
+}
+
+.kv .btn:hover {
+  background-color: #34495E;
+}
+
+/* Services Section */
+.services-container {
+  background-color: #fff;
+  padding: 60px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.section-title h2 {
+  font-size: 36px;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.service-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.service-box {
+  width: 30%;
+  background-color: #ECF0F1;
+  padding: 25px;
+  text-align: center;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  transition: all 0.3s ease;
+}
+
+.service-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.service-icon img {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 15px;
+}
+
+.service-title h3 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.description p {
+  font-size: 16px;
+  color: #777;
+}
+
+/* Footer Section */
+.main-footer {
+  background-color: #1A2A38;
+  color: #fff;
+  padding: 50px 0;
+  font-size: 14px;
+}
+
+.main-footer .container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.col-4 {
+  width: 30%;
+}
+
+.sns {
+  list-style: none;
+  padding: 0;
+}
+
+.sns li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.sns i {
+  font-size: 20px;
+  color: #fff;
+}
+
+.sns i:hover {
+  color: #E67E22;
+}
+
+/* Footer Section */
+.main-footer {
+  background-color: #1A2A38;
+  color: #fff;
+  padding: 50px 0;
+  font-size: 14px;
+}
+
+.main-footer .container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: center; /* Vertically align the content */
+}
+
+.col-logo {
+  width: 25%; /* Logo on the left */
+}
+
+.col-sns {
+  width: 50%; /* Social media in the center */
+  text-align: center;
+}
+
+.col-contact {
+  width: 25%; /* Contact Us on the right */
+  text-align: right;
+}
+
+.sns {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sns li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.sns i {
+  font-size: 20px;
+  color: #fff;
+}
+
+.sns i:hover {
+  color: #E67E22;
+}
+
+.main-footer h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.main-footer p {
+  font-size: 14px;
+}
+
+/* Responsive Design for Footer */
+@media (max-width: 768px) {
+  .main-footer .container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .col-logo, .col-sns, .col-contact {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .col-contact {
+    text-align: center;
+  }
+}
+
+
+/* Scroll to Top Button */
+#goTop {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #E67E22;
+  color: white;
+  border-radius: 50%;
+  padding: 15px;
+  font-size: 24px;
+  cursor: pointer;
+  display: none;
+}
+
+#goTop:hover {
+  background-color: #34495E;
+}
+
+/* Active State for Scroll to Top */
+#goTop.show {
+  display: block;
+}
+
+/* Gallery Section */
+.gallery-section {
+  background-color: #f4f4f4;
+  padding: 60px 0;
+}
+
+
+
+.gallery-section .section-title {
+  font-size: 36px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.gallery-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+.gallery-card {
+  width: 22%;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-card img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.gallery-card-info {
+  margin-top: 10px;
+}
+
+.gallery-card-info p {
+  font-size: 16px;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
+  .service-box {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .gallery-card {
+    width: 45%;
+  }
+
+  .main-info {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .site-title {
+    margin-left: 0;
+    font-size: 28px;
+  }
+
+  .main-nav ul li {
+    margin: 0 10px;
+  }
+
+  .main-nav a {
+    font-size: 14px;
+  }
+
+  .kv .btn {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}
+
+/* Large Screens */
+@media (min-width: 1200px) {
+  .service-box {
+    width: 23%;
+  }
+
+  .gallery-card {
+    width: 18%;
+  }
+}
+
+
+/* Booking Form Styles */
+.booking-form-section {
+  padding: 40px;
+  background-color: #fff;
+  max-width: 600px;
+  margin: 20px auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.booking-form-section label {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.booking-form-section input,
+.booking-form-section textarea,
+.booking-form-section button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Shop Page Styles */
+.shop-section {
+  padding: 40px;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.product-card {
+  display: inline-block;
+  width: 30%;
+  margin: 10px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+  transform: scale(1.05);
+}
+
+.product-card img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+
+
+
