@@ -410,7 +410,7 @@ title {
 }
 
 /* Responsive Design for Mobile */
-@media (max-width: 760px) {
+@media (max-width: 768px) {
   .service-box {
     width: 100%;
     margin-bottom: 20px;
