@@ -43,9 +43,43 @@ title {
   left: 20px;
 }
 
+/* Logo Styling */
 .logo img {
-  width: 150;
-  height: 100;/* Keep logo simple */ 
+  max-width: 120px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Video Section Styling */
+.video-section {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.video-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.video-card video {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+  .logo img {
+    max-width: 100px;
+  }
+
+  .video-card video {
+    max-width: 100%;
+  }
 }
 
 
