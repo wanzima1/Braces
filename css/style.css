@@ -45,8 +45,9 @@ title {
 
 .logo img {
   height: auto;
-  width: auto; /* Keep logo simple */
+  width: 150; /* Keep logo simple */
 }
+
 
 /* Title Styling */
 .site-title {
