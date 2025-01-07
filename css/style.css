@@ -44,8 +44,8 @@ title {
 }
 
 .logo img {
-  height: auto;
-  width: 150; /* Keep logo simple */
+  width: 150;
+  height: 100;/* Keep logo simple */ 
 }
 
 
