@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Book a Repair</title>
-  <link rel="stylesheet" href="./css/style.css"> <!-- Link to your CSS file -->
+  <link rel="stylesheet" href="./css/style.css">
   <style>
     @keyframes blink {
       0% { opacity: 1; }
@@ -41,6 +41,15 @@
         <img src="./images/WhatsApp%20Image%202024-12-19%20at%2008.21.08_7aa0a1c1.jpg" alt="Logo">
       </div>
       <h1 class="site-title">Book a Repair</h1>
+    </div>
+
+
+  <div class="main-nav">
+      <div class="container">
+        <nav>
+          <a href="./index.html" class="active">Home</a>
+        </nav>
+      </div>
     </div>
   </header>
 
@@ -116,14 +125,14 @@
 
       if (serviceOption === 'homeService') {
         note.style.display = 'block';
-        alert('Home service is selected. Additional 50 cedis will be charged.');
+        alert('Home service is selected. Additional fund will be charged.');
       } else if (serviceOption === 'shopVisit') {
         note.style.display = 'none';
         alert('Visit to the shop is selected. No additional charge.');
       }
 
       // Construct the email content
-      const adminEmail = "calebowusu333@gmail.com"; // Replace with your admin email
+      const adminEmail = "calebowusu333@gmail.com"; 
       const subject = encodeURIComponent("Repair Booking Request");
       const body = encodeURIComponent(
         `Booking Details:\n\n` +
