@@ -357,29 +357,6 @@ title {
 }
 
 
-/* Scroll to Top Button */
-#goTop {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  background-color: #E67E22;
-  color: white;
-  border-radius: 50%;
-  padding: 15px;
-  font-size: 24px;
-  cursor: pointer;
-  display: none;
-}
-
-#goTop:hover {
-  background-color: #34495E;
-}
-
-/* Active State for Scroll to Top */
-#goTop.show {
-  display: block;
-}
-
 /* Gallery Section */
 .gallery-section {
   background-color: #f4f4f4;
@@ -433,7 +410,7 @@ title {
 }
 
 /* Responsive Design for Mobile */
-@media (max-width: 768px) {
+@media (max-width: 760px) {
   .service-box {
     width: 100%;
     margin-bottom: 20px;
