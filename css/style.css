@@ -456,58 +456,8 @@ title {
 }
 
 
-/* Booking Form Styles */
-.booking-form-section {
-  padding: 40px;
-  background-color: #fff;
-  max-width: 600px;
-  margin: 20px auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
 
-.booking-form-section label {
-  display: block;
-  font-size: 16px;
-  margin-bottom: 8px;
-}
 
-.booking-form-section input,
-.booking-form-section textarea,
-.booking-form-section button {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-/* Shop Page Styles */
-.shop-section {
-  padding: 40px;
-  background-color: #f9f9f9;
-  text-align: center;
-}
-
-.product-card {
-  display: inline-block;
-  width: 30%;
-  margin: 10px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  transition: transform 0.3s ease;
-}
-
-.product-card:hover {
-  transform: scale(1.05);
-}
-
-.product-card img {
-  max-width: 100%;
-  border-radius: 8px;
-}
 
 
 
