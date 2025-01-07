@@ -62,11 +62,12 @@ title {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  padding: 20px
 }
 
 .video-card video {
-  width: 100%;
-  max-width: 50%;
+  width: auto;
+  max-width: 100%;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -78,7 +79,7 @@ title {
   }
 
   .video-card video {
-    max-width: 50%;
+    max-width: 100%;
   }
 }
 
