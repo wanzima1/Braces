@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Order Form</title>
   <style>
     /* Global Styles */
@@ -162,60 +161,21 @@
     .go-top.show {
       display: block;
     }
-
-    .main-nav {
-  background-color: #2C3E50;
-  text-align: right;
-  padding: 15px 0;
-}
-
-.main-nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.main-nav ul li {
-  display: inline-block;
-  margin: 0 20px;
-}
-
-.main-nav a {
-  color: #fff;
-  padding: 10px 20px;
-  text-decoration: none;
-  font-size: 16px;
-  font-weight: 500;
-  transition: background-color 0.3s ease;
-}
-
-.main-nav a.active, .main-nav a:hover {
-  background-color: #E67E22;
-  border-radius: 4px;
-}
   </style>
 </head>
 <body>
   <header class="main-header">
     <div class="logo">
-      <img src="./images/WhatsApp%20Image%202024-12-19%20at%2008.21.08_7aa0a1c1.jpg" alt="Shop Logo">
+      <img src="./images/logo.jpg" alt="Shop Logo">
     </div>
     <h1 class="site-title">Order From The Best</h1>
-
-    <div class="main-nav">
-      <div class="container">
-        <nav>
-          <a href="./index.html" class="active">Home</a>
-        </nav>
-      </div>
-    </div>
   </header>
 
   <main>
     <h2>Order For Braces</h2>
     <p class="info">
       Payment is accepted on delivery in Accra, Tema, and Kasoa. For pickups, visit Dansoman-Control. Customers outside Accra are required to make advance payments.
-      <strong>Please reference your name when paying via Mobile Money also details will be submitted via Email</strong>
+      <strong>Please reference your name when paying via Mobile Money; details will be submitted via Email.</strong>
     </p>
     <form id="paymentForm">
       <label for="location">Select Delivery Location:</label>
@@ -234,10 +194,13 @@
         <option value="Mobile Money">Mobile Money</option>
       </select>
 
+      <label for="reference">Add Reference:</label>
+      <input type="text" id="reference" name="reference" placeholder="Enter your reference">
+
       <div id="paymentDetails" style="display: none;"></div>
-      <div id="phoneNumberDiv" style="display: none;">
-        <label for="phoneNumber">Phone Number:</label>
-        <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Enter your phone number" required>
+
+      <div id="mobileNumberInfo" style="display: none;">
+        <p><strong>Mobile Money Number:</strong> 0245095233</p>
       </div>
 
       <button type="submit">Confirm Payment</button>
@@ -247,36 +210,29 @@
 
   <footer>
     <ul class="sns">
-      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-      <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+      <li><a href="#">Facebook</a></li>
+      <li><a href="#">Twitter</a></li>
+      <li><a href="#">Instagram</a></li>
     </ul>
     <p>Contact Us: calebowusu333@gmail.com | +233 244266271</p>
   </footer>
 
-  <button id="goTop" class="go-top">↑</button>
+  <button id="goTop" class="go-top">&uarr;</button>
 
   <script>
     const paymentForm = document.getElementById('paymentForm');
-    const locationSelect = document.getElementById('location');
     const paymentMethodSelect = document.getElementById('paymentMethod');
     const paymentDetails = document.getElementById('paymentDetails');
-    const phoneNumberDiv = document.getElementById('phoneNumberDiv');
+    const mobileNumberInfo = document.getElementById('mobileNumberInfo');
     const confirmationMessage = document.getElementById('confirmationMessage');
 
     paymentMethodSelect.addEventListener('change', () => {
       paymentDetails.innerHTML = '';
       paymentDetails.style.display = 'none';
-      phoneNumberDiv.style.display = 'none';  // Hide phone number field initially
+      mobileNumberInfo.style.display = 'none';
 
       if (paymentMethodSelect.value === 'Mobile Money') {
-        paymentDetails.innerHTML = `
-          <label for="mobileMoneyNumber">Mobile Money Number:</label>
-          <input type="text" id="mobileMoneyNumber" name="mobileMoneyNumber" placeholder="Enter your Mobile Money number" required>
-        `;
-        paymentDetails.style.display = 'block';
-      } else if (paymentMethodSelect.value === 'Cash on Delivery') {
-        phoneNumberDiv.style.display = 'block';  // Show phone number field for COD
+        mobileNumberInfo.style.display = 'block';
       }
     });
 
@@ -284,20 +240,19 @@
       event.preventDefault();
 
       // Gather form data
-      const location = locationSelect.value;
+      const location = document.getElementById('location').value;
       const paymentMethod = paymentMethodSelect.value;
-      const mobileMoneyNumber = document.getElementById('mobileMoneyNumber')?.value || 'N/A';
-      const phoneNumber = document.getElementById('phoneNumber')?.value || 'N/A';
+      const reference = document.getElementById('reference').value || 'N/A';
 
       // Construct email details
-      const adminEmail = "calebowusu333@gmail.com"; // Replace with your admin email
+      const adminEmail = "calebowusu333@gmail.com";
       const subject = encodeURIComponent("Payment Confirmation");
       const body = encodeURIComponent(
         `Payment Details:\n\n` +
         `Delivery Location: ${location}\n` +
         `Payment Method: ${paymentMethod}\n` +
-        `Mobile Money Number: ${mobileMoneyNumber}\n` +
-        `Phone Number: ${phoneNumber}\n\n` +
+        `Reference: ${reference}\n` +
+        `Mobile Money Number: 0245095233\n\n` +
         `Please review the details.`
       );
 
