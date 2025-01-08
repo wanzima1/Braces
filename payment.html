@@ -253,7 +253,7 @@
 <script>
   // Initialize EmailJS
   (function () {
-    emailjs.init("default_service"); // Replace with your EmailJS User ID
+    emailjs.init("service_9hch5mx"); // Replace with your EmailJS User ID
   })();
 
   const paymentForm = document.getElementById('paymentForm');
@@ -270,8 +270,12 @@
     };
 
     // Send the email using EmailJS
-   emailjs
-     .send("service_9hch5mx","template_8o08ytp");
+    emailjs.send("service_9hch5mx","template_8o08ytp",{
+              location: "{{location}}",
+              phoneNumber: "{{phoneNumber}}",
+              reference: "{{reference}}",
+              from_name: "Order placed",
+              });
       .then(
         (response) => {
           confirmationMessage.style.display = 'block';
@@ -285,7 +289,6 @@
       );
   });
 </script>
-
 
 </body>
 </html>
