@@ -270,11 +270,11 @@
       };
 
       // Send the email using EmailJS
-      emailjs.send("service_9hch5mx","template_8o08ytp",{
-        location: "{{location}}",
-         phoneNumber: "0245095233", // Static phone number
-        reference: "{{reference}}",
-        from_name: "Order placed",
+      emailjs.send("default_service", "template_8o08yt", {
+        location: formData.location,
+        phoneNumber: formData.phoneNumber,
+        reference: formData.reference,
+        from_name: "Order Placed",
       })
       .then(
         (response) => {
