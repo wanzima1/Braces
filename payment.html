@@ -272,25 +272,31 @@
     const btn = document.getElementById('button');
 
     paymentForm.addEventListener('submit', function(event) {
-      event.preventDefault();
+  event.preventDefault();
 
-      btn.value = 'Sending...';
+  btn.value = 'Sending...';
 
-      const serviceID = 'default_service';
-      const templateID = 'template_8o08ytp';
+  const serviceID = 'default_service';
+  const templateID = 'template_8o08ytp';
 
-      emailjs.sendForm(serviceID, templateID, this)
-        .then(() => {
-          btn.value = 'Confirm Payment';
-          confirmationMessage.style.display = 'block';
-          confirmationMessage.textContent = "Thank you! Your order has been submitted successfully.";
-          paymentForm.reset();
-        }, (err) => {
-          btn.value = 'Confirm Payment';
-          confirmationMessage.style.display = 'block';
-          confirmationMessage.textContent = "Error submitting your order. Please try again later.";
-        });
+  emailjs.sendForm(serviceID, templateID, this)
+    .then(() => {
+      btn.value = 'Confirm Payment';
+      confirmationMessage.style.display = 'block';
+      confirmationMessage.textContent = "Thank you! Your order has been submitted successfully.";
+      paymentForm.reset();
+
+      // Redirect to the homepage after 3 seconds
+      setTimeout(() => {
+        window.location.href = './index.html'; // Update with the correct homepage path
+      }, 3000);
+    }, (err) => {
+      btn.value = 'Confirm Payment';
+      confirmationMessage.style.display = 'block';
+      confirmationMessage.textContent = "Error submitting your order. Please try again later.";
     });
+});
+
   </script>
 
 </body>
