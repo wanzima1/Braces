@@ -214,9 +214,21 @@
   <main>
     <h2>Order For Braces</h2>
     <p class="info">
-      Payment is accepted on delivery in Accra, Tema, and Kasoa. For pickups, visit Dansoman-Control. Customers outside Accra are required to make advance payments.
-      <strong>Please reference your name when paying via Mobile Money also call for confirmation</strong>
+      Payment is accepted on delivery in Accra, Tema, and Kasoa. For pickups, visit Dansoman-Control. Customers outside Accra are required to make advance or half payments.
+      <strong><br>Payment is accepted through MOMO and reference your name during payment (Reference should match the one provided here, for security reasons).<br>
+      <br>Amount: GH₵‎56<br></strong>
     </p>
+    
+
+      <div id="phoneNumberDiv">
+        <label for="phoneNumber">Phone Number: 0245095233</label>
+      </div>
+
+    <div id="name">
+        <label for="nmae">Name: Adorina</label>
+      </div>
+    
+  
     <form id="paymentForm">
       <label for="location">Select Delivery Location:</label>
       <select id="location" name="location" required>
@@ -227,9 +239,7 @@
         <option value="Outside Accra">Outside Accra</option>
       </select>
 
-      <div id="phoneNumberDiv">
-        <label for="phoneNumber">Phone Number: 0245095233</label>
-      </div>
+      
 
       <label for="reference">Add Reference:</label>
       <input type="text" id="reference" name="reference" placeholder="Enter payment reference" required>
