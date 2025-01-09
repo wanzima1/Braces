@@ -248,34 +248,34 @@
   </footer>
 
   <button id="goTop" class="go-top">↑</button>
-  
-<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-<script>
-  // Initialize EmailJS
-  (function () {
-    emailjs.init("service_9hch5mx"); // Replace with your EmailJS User ID
-  })();
 
-  const paymentForm = document.getElementById('paymentForm');
-  const confirmationMessage = document.getElementById('confirmationMessage');
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    // Initialize EmailJS
+    (function () {
+      emailjs.init("'2dYl2LeOZ3NN4aQuV'"); // Replace with your actual EmailJS User ID
+    })();
 
-  paymentForm.addEventListener('submit', (event) => {
-    event.preventDefault();
+    const paymentForm = document.getElementById('paymentForm');
+    const confirmationMessage = document.getElementById('confirmationMessage');
 
-    // Gather form data
-    const formData = {
-      location: document.getElementById('location').value,
-      phoneNumber: "0245095233", // Static phone number
-      reference: document.getElementById('reference').value,
-    };
+    paymentForm.addEventListener('submit', (event) => {
+      event.preventDefault();
 
-    // Send the email using EmailJS
-    emailjs.send("service_9hch5mx","template_8o08ytp",{
-              location: "{{location}}",
-              phoneNumber: "{{phoneNumber}}",
-              reference: "{{reference}}",
-              from_name: "Order placed",
-              });
+      // Gather form data
+      const formData = {
+        location: document.getElementById('location').value,
+        phoneNumber: "0245095233", // Static phone number
+        reference: document.getElementById('reference').value,
+      };
+
+      // Send the email using EmailJS
+      emailjs.send("YOUR_SERVICE_ID","template_8o08ytp",{
+        location: "{{location}}",
+        phoneNumber: "{{phoneNumber}}",
+        reference: "{{reference}}",
+        from_name: "Order placed",
+      })
       .then(
         (response) => {
           confirmationMessage.style.display = 'block';
@@ -287,8 +287,8 @@
           confirmationMessage.textContent = "Error submitting your order. Please try again later.";
         }
       );
-  });
-</script>
+    });
+  </script>
 
 </body>
 </html>
