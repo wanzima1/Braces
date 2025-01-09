@@ -175,42 +175,57 @@
     <p>Contact Us: BracesbyAdorina@gmail.com | +233 244266271</p>
   </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script>
   // Initialize EmailJS
-  emailjs.init("2dYl2LeOZ3NN4aQuV"); // Replace with your User ID from EmailJS dashboard
+  emailjs.init("2dYl2LeOZ3NN4aQuV"); // Replace with your EmailJS User ID
 
   const paymentForm = document.getElementById('paymentForm');
   const btn = document.getElementById('button');
+  const confirmationMessage = document.getElementById('confirmationMessage');
 
   paymentForm.addEventListener('submit', function (event) {
-    event.preventDefault();
-    btn.value = 'Sending...';
+    event.preventDefault(); // Prevent form reload
+    btn.textContent = 'Sending...'; // Update button text
 
     // Retrieve form values
+    const amount = document.getElementById("amount").value;
+    const reference = document.getElementById("reference").value;
+    const location = document.getElementById("location").value;
+
+    // Validate input fields
+    if (!amount || !reference || !location) {
+      alert("Please fill in all required fields.");
+      btn.textContent = 'Confirm Payment';
+      return;
+    }
+
+    // Prepare data for EmailJS
     const formData = {
-      user_name: document.getElementById("name").value,
-      user_email: document.getElementById("email").value, // Add an email field if needed
-      amount: document.getElementById("amount").value,
-      reference: document.getElementById("reference").value,
-      location: document.getElementById("location").value,
+      amount: amount,
+      reference: reference,
+      location: location,
     };
 
     // Send form using EmailJS
     emailjs.send("default_service", "template_8o08ytp", formData)
       .then(() => {
-        alert("Payment confirmed!");
-        btn.value = 'Confirm Payment';
-        paymentForm.reset();
+        btn.textContent = 'Confirm Payment'; // Reset button text
+        confirmationMessage.style.display = 'block';
+        confirmationMessage.textContent = `Thank you! Your payment of GH₵‎${amount} has been processed. Delivery to ${location} is confirmed. Reference: ${reference}.`;
+        paymentForm.reset(); // Clear form fields
+
+        // Redirect to home page after 3 seconds
+        setTimeout(() => {
+          window.location.href = "./index.html";
+        }, 3000);
       })
       .catch((err) => {
         console.error('Error:', err);
         alert("Failed to send. Please try again.");
-        btn.value = 'Confirm Payment';
+        btn.textContent = 'Confirm Payment'; // Reset button text
       });
   });
 </script>
-
 
 
 </body>
