@@ -217,7 +217,7 @@
       <strong><br>Payment is accepted through MOMO and reference your name during payment (Reference should match the one provided here, for security reasons).<br>
       <br>
        <p> Name: Adorina.</p> 
-       <p>Momo Number: 0578837373</p> 
+       <p>Momo Number: 0244266271</p> 
        <p>Amount: GH₵‎56</p> 
         <br>
       </strong>
@@ -239,6 +239,9 @@
         <option value="Outside Accra">Outside Accra</option>
       </select>
 
+      <label for="amountPaid">Amount Paid (GH₵):</label>
+      <input type="number" id="amountPaid" name="amountPaid" placeholder="Enter amount paid" required>
+
       <label for="reference">Add Reference:</label>
       <input type="text" id="reference" name="reference" placeholder="Enter payment reference" required>
 
@@ -253,16 +256,15 @@
       <li><a href="#"><i class="fa fa-twitter"></i></a></li>
       <li><a href="#"><i class="fa fa-instagram"></i></a></li>
     </ul>
-    <p>Contact Us: calebowusu333@gmail.com | +233 244266271</p>
+    <p>Contact Us: BracesbyAdorina@gmail.com | +233 244266271</p>
   </footer>
 
   <button id="goTop" class="go-top">↑</button>
 
   <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
   <script>
-    // Initialize EmailJS
     (function () {
-      emailjs.init("2dYl2LeOZ3NN4aQuV"); // Replace with your actual EmailJS User ID
+      emailjs.init("2dYl2LeOZ3NN4aQuV");
     })();
 
     const paymentForm = document.getElementById('paymentForm');
@@ -283,10 +285,8 @@
           confirmationMessage.style.display = 'block';
           confirmationMessage.textContent = "Thank you! Your order has been submitted successfully.";
           paymentForm.reset();
-
-          // Redirect to the homepage after 3 seconds
           setTimeout(() => {
-            window.location.href = './index.html'; // Update with the correct homepage path
+            window.location.href = './index.html';
           }, 3000);
         }, (err) => {
           btn.value = 'Confirm Payment';
@@ -295,6 +295,5 @@
         });
     });
   </script>
-
 </body>
 </html>
