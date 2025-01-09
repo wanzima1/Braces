@@ -126,77 +126,6 @@
       text-align: center;
       font-size: 14px;
     }
-
-    .sns {
-      list-style: none;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      margin: 10px 0;
-    }
-
-    .sns li {
-      margin: 0 10px;
-    }
-
-    .sns a {
-      color: #fff;
-      text-decoration: none;
-      font-size: 18px;
-    }
-
-    .sns a:hover {
-      color: #E67E22;
-    }
-
-    .go-top {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #E67E22;
-      color: white;
-      font-size: 18px;
-      padding: 10px 15px;
-      border: none;
-      border-radius: 50%;
-      display: none;
-      cursor: pointer;
-    }
-
-    .go-top.show {
-      display: block;
-    }
-
-    .main-nav {
-      background-color: #2C3E50;
-      text-align: right;
-      padding: 15px 0;
-    }
-
-    .main-nav ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .main-nav ul li {
-      display: inline-block;
-      margin: 0 20px;
-    }
-
-    .main-nav a {
-      color: #fff;
-      padding: 10px 20px;
-      text-decoration: none;
-      font-size: 16px;
-      font-weight: 500;
-      transition: background-color 0.3s ease;
-    }
-
-    .main-nav a.active, .main-nav a:hover {
-      background-color: #E67E22;
-      border-radius: 4px;
-    }
   </style>
 </head>
 <body>
@@ -205,31 +134,24 @@
       <img src="./images/WhatsApp%20Image%202024-12-19%20at%2008.21.08_7aa0a1c1.jpg" alt="Shop Logo">
     </div>
     <h1 class="site-title">Order From The Best</h1>
-
-    <div class="main-nav">
-      <div class="container">
-        <nav>
-          <a href="./index.html" class="active">Home</a>
-        </nav>
-      </div>
-    </div>
   </header>
 
   <main>
     <h2>Order For Braces</h2>
     <p class="info">
       Payment is accepted on delivery in Accra, Tema, and Kasoa. For pickups, visit Dansoman-Control. Customers outside Accra are required to make advance or half payments.
-      <strong><br>Please Payment is accepted through MOMO and remember to reference your name during payment (Reference should match the one provided here, for security reasons).<br>
+      <strong><br>Payment is accepted through MOMO and reference your name during payment (Reference should match the one provided here, for security reasons).<br>
       <br>Amount: GH₵‎56<br></strong>
     </p>
-      
+    
+    <form id="paymentForm">
       <label for="momoNumber">Momo Number: 0578837373</label>
       <input type="tel" id="momoNumber" name="momoNumber" value="0578837373" readonly>
 
       <label for="phone">Name: Adorina</label>
-      <input type="tel" id="number" name="phone" value="name" readonly>
+      <input type="text" id="name" name="name" value="Adorina" readonly>
 
-      <label for="amount">Enter Amount Sent: </label>
+      <label for="amount">Enter Amount Sent:</label>
       <input type="number" id="amount" name="amount" placeholder="Enter amount (e.g., 56)" required>
 
       <label for="reference">Add Reference:</label>
@@ -250,85 +172,58 @@
   </main>
 
   <footer>
-    <ul class="sns">
-      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-      <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-    </ul>
     <p>Contact Us: BracesbyAdorina@gmail.com | +233 244266271</p>
   </footer>
 
-  <button id="goTop" class="go-top">↑</button>
-
-
   <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-<script>
-  // Initialize EmailJS
-  (function () {
-    emailjs.init("2dYl2LeOZ3NN4aQuV"); //  EmailJS User ID
-  })();
+  <script>
+    // Initialize EmailJS
+    (function () {
+      emailjs.init("2dYl2LeOZ3NN4aQuV"); // EmailJS User ID
+    })();
 
-  const paymentForm = document.getElementById('paymentForm');
-  const confirmationMessage = document.getElementById('confirmationMessage');
-  const btn = document.getElementById('button');
+    const paymentForm = document.getElementById('paymentForm');
+    const confirmationMessage = document.getElementById('confirmationMessage');
+    const btn = document.getElementById('button');
 
-  paymentForm.addEventListener('submit', function (event) {
-    event.preventDefault();
+    paymentForm.addEventListener('submit', function (event) {
+      event.preventDefault();
 
-    btn.value = 'Sending...';
+      btn.textContent = 'Sending...';
 
-    // Validate inputs
-    const momoNumber = "0578837373" //static
-    const amount = document.getElementById("amount").value;
-    const reference = document.getElementById("reference").value;
-    const location = document.getElementById("location").value;
+      // Validate inputs
+      const amount = document.getElementById("amount").value;
+      const reference = document.getElementById("reference").value;
+      const location = document.getElementById("location").value;
 
-    if (!amount || !reference || !location) {
-      alert("Please fill in all required fields.");
-      btn.value = 'Confirm Payment';
-      return;
-    }
+      if (!amount || !reference || !location || amount <= 0) {
+        alert("Please fill in all required fields correctly.");
+        btn.textContent = 'Confirm Payment';
+        return;
+      }
 
-    if (amount <= 0) {
-      alert("Amount must be greater than 0.");
-      btn.value = 'Confirm Payment';
-      return;
-    }
+      const formData = { amount, reference, location };
 
-    // Prepare the form data for sending
-    const formData = {
-      amount: amount,
-      reference: reference,
-      location: location,
-    };
+      // Send the data using EmailJS
+      const serviceID = 'default_service';
+      const templateID = 'template_8o08ytp';
 
-    // Send the data using EmailJS
-    const serviceID = 'default_service'; //  service ID
-    const templateID = 'template_8o08ytp';
-
-    emailjs.send(serviceID, templateID, formData)
-      .then(() => {
-        btn.value = 'Confirm Payment';
-        confirmationMessage.style.display = 'block';
-        confirmationMessage.textContent = `Thank you, Your payment of GH₵‎${amount} has been processed. Delivery to ${location} is confirmed. Reference: ${reference}.`;
-        paymentForm.reset();
-
-        // Reset static fields after clearing the form
-        document.getElementById("name").value = name;
-        document.getElementById("phone").value = phone;
-        document.getElementById("momoNumber").value = momoNumber;
-
-        setTimeout(() => {
-          window.location.href = "./index.html"; // Redirect to home page
-        }, 1000); // 1-second delay before redirecting
-      })
-      .catch((err) => {
-        btn.value = 'Confirm Payment';
-        confirmationMessage.style.display = 'block';
-        confirmationMessage.textContent = "Error submitting your order. Please try again later.";
-      });
-  });
-</script>
-
+      emailjs.send(serviceID, templateID, formData)
+        .then(() => {
+          btn.textContent = 'Confirm Payment';
+          confirmationMessage.style.display = 'block';
+          confirmationMessage.textContent = `Thank you, Adorina! Your payment of GH₵‎${amount} has been processed. Delivery to ${location} is confirmed. Reference: ${reference}.`;
+          paymentForm.reset();
+          setTimeout(() => {
+            window.location.href = "./index.html"; // Redirect to home page
+          }, 3000); // 3-second delay
+        })
+        .catch((err) => {
+          btn.textContent = 'Confirm Payment';
+          confirmationMessage.style.display = 'block';
+          confirmationMessage.textContent = "Error submitting your order. Please try again.";
+        });
+    });
+  </script>
 </body>
 </html>
