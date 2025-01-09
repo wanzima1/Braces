@@ -175,101 +175,42 @@
     <p>Contact Us: BracesbyAdorina@gmail.com | +233 244266271</p>
   </footer>
 
-<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script>
   // Initialize EmailJS
-  (function () {
-    emailjs.init("2dYl2LeOZ3NN4aQuV"); // Replace with your actual EmailJS User ID
-  })();
+  emailjs.init("2dYl2LeOZ3NN4aQuV"); // Replace with your User ID from EmailJS dashboard
 
-  // Select DOM elements
   const paymentForm = document.getElementById('paymentForm');
   const btn = document.getElementById('button');
-  const confirmationMessage = document.getElementById('confirmationMessage');
 
-  // Add event listener for form submission
   paymentForm.addEventListener('submit', function (event) {
-    event.preventDefault(); // Prevent form reload
+    event.preventDefault();
+    btn.value = 'Sending...';
 
-    btn.value = 'Sending...'; // Update button text during processing
-
-    // Static data
-    const momoNumber = "0578837373";
-    const name = "Adorina";
-
-    // Retrieve input values
-    const amount = document.getElementById("amount").value;
-    const reference = document.getElementById("reference").value;
-    const location = document.getElementById("location").value;
-
-    // Validate inputs
-    if (!amount || !reference || !location) {
-      alert("Please fill in all required fields.");
-      btn.value = 'Confirm Payment';
-      return;
-    }
-
-    if (amount <= 0) {
-      alert("Amount must be greater than 0.");
-      btn.value = 'Confirm Payment';
-      return;
-    }
-
-    // Prepare data for sending
+    // Retrieve form values
     const formData = {
-      momoNumber: momoNumber,
-      name: name,
-      amount: amount,
-      reference: reference,
-      location: location,
+      user_name: document.getElementById("name").value,
+      user_email: document.getElementById("email").value, // Add an email field if needed
+      amount: document.getElementById("amount").value,
+      reference: document.getElementById("reference").value,
+      location: document.getElementById("location").value,
     };
 
-    // EmailJS Service and Template IDs
-    const serviceID = 'default_service'; // Replace with your EmailJS service ID
-    const templateID = 'template_8o08ytp'; // Replace with your EmailJS template ID
-
     // Send form using EmailJS
-    emailjs.send(serviceID, templateID, formData)
+    emailjs.send("default_service", "template_8o08ytp", formData)
       .then(() => {
-        btn.value = 'Confirm Payment'; // Reset button text
-        confirmationMessage.style.display = 'block';
-        confirmationMessage.textContent = `Thank you! Your payment of GH₵‎${amount} has been processed. Delivery to ${location} is confirmed. Reference: ${reference}.`;
-        paymentForm.reset(); // Clear form fields
-
-        // Reset static fields after clearing the form
-        document.getElementById("momoNumber").value = momoNumber;
-        document.getElementById("name").value = name;
-
-        // Redirect to home page after 3 seconds
-        setTimeout(() => {
-          window.location.href = "./index.html";
-        }, 3000);
+        alert("Payment confirmed!");
+        btn.value = 'Confirm Payment';
+        paymentForm.reset();
       })
       .catch((err) => {
         console.error('Error:', err);
-        btn.value = 'Confirm Payment'; // Reset button text
-        confirmationMessage.style.display = 'block';
-        confirmationMessage.textContent = "Error submitting your order. Please try again later.";
-      });
-  });
-
-  // Alternative snippet for simple form sending
-  document.getElementById('form').addEventListener('submit', function (event) {
-    event.preventDefault(); // Prevent form reload
-
-    btn.value = 'Sending...'; // Update button text during processing
-
-    // Simple EmailJS form sending
-    emailjs.sendForm('default_service', 'template_8o08ytp', this)
-      .then(() => {
-        btn.value = 'Send Email'; // Reset button text
-        alert('Sent!'); // Notify user
-      }, (err) => {
-        btn.value = 'Send Email'; // Reset button text
-        alert(JSON.stringify(err)); // Notify user of error
+        alert("Failed to send. Please try again.");
+        btn.value = 'Confirm Payment';
       });
   });
 </script>
+
 
 
 </body>
