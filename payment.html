@@ -253,7 +253,7 @@
   <script>
     // Initialize EmailJS
     (function () {
-      emailjs.init("'2dYl2LeOZ3NN4aQuV'"); // Replace with your actual EmailJS User ID
+      emailjs.init('2dYl2LeOZ3NN4aQuV'); // Replace with your actual EmailJS User ID
     })();
 
     const paymentForm = document.getElementById('paymentForm');
@@ -272,7 +272,7 @@
       // Send the email using EmailJS
       emailjs.send("YOUR_SERVICE_ID","template_8o08ytp",{
         location: "{{location}}",
-        phoneNumber: "{{phoneNumber}}",
+         phoneNumber: "0245095233", // Static phone number
         reference: "{{reference}}",
         from_name: "Order placed",
       })
