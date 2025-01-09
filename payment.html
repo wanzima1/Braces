@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -86,11 +87,6 @@
       border-radius: 5px;
     }
 
-    form input[readonly] {
-      background-color: #f0f0f0;
-      cursor: not-allowed;
-    }
-
     form button {
       background-color: #E67E22;
       color: #fff;
@@ -126,6 +122,77 @@
       text-align: center;
       font-size: 14px;
     }
+
+    .sns {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      margin: 10px 0;
+    }
+
+    .sns li {
+      margin: 0 10px;
+    }
+
+    .sns a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 18px;
+    }
+
+    .sns a:hover {
+      color: #E67E22;
+    }
+
+    .go-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #E67E22;
+      color: white;
+      font-size: 18px;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 50%;
+      display: none;
+      cursor: pointer;
+    }
+
+    .go-top.show {
+      display: block;
+    }
+
+    .main-nav {
+      background-color: #2C3E50;
+      text-align: right;
+      padding: 15px 0;
+    }
+
+    .main-nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .main-nav ul li {
+      display: inline-block;
+      margin: 0 20px;
+    }
+
+    .main-nav a {
+      color: #fff;
+      padding: 10px 20px;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 500;
+      transition: background-color 0.3s ease;
+    }
+
+    .main-nav a.active, .main-nav a:hover {
+      background-color: #E67E22;
+      border-radius: 4px;
+    }
   </style>
 </head>
 <body>
@@ -134,29 +201,23 @@
       <img src="./images/WhatsApp%20Image%202024-12-19%20at%2008.21.08_7aa0a1c1.jpg" alt="Shop Logo">
     </div>
     <h1 class="site-title">Order From The Best</h1>
+
+    <div class="main-nav">
+      <div class="container">
+        <nav>
+          <a href="./index.html" class="active">Home</a>
+        </nav>
+      </div>
+    </div>
   </header>
 
   <main>
     <h2>Order For Braces</h2>
     <p class="info">
-      Payment is accepted on delivery in Accra, Tema, and Kasoa. For pickups, visit Dansoman-Control. Customers outside Accra are required to make advance or half payments.
-      <strong><br>Payment is accepted through MOMO and reference your name during payment (Reference should match the one provided here, for security reasons).<br>
-      <br>Amount: GH₵‎56<br></strong>
+      Payment is accepted on delivery in Accra, Tema, and Kasoa. For pickups, visit Dansoman-Control. Customers outside Accra are required to make advance payments.
+      <strong>Please reference your name when paying via Mobile Money also call for confirmation</strong>
     </p>
-    
     <form id="paymentForm">
-      <label for="momoNumber">Momo Number: 0578837373</label>
-      
-
-      <label for="phone">Name: Adorina</label>
-      
-
-      <label for="amount">Enter Amount Sent:</label>
-      <input type="number" id="amount" name="amount" placeholder="Enter amount (e.g., 56)" required>
-
-      <label for="reference">Add Reference:</label>
-      <input type="text" id="reference" name="reference" placeholder="Enter payment reference" required>
-
       <label for="location">Select Delivery Location:</label>
       <select id="location" name="location" required>
         <option value="" disabled selected>Choose Location</option>
@@ -166,67 +227,61 @@
         <option value="Outside Accra">Outside Accra</option>
       </select>
 
+      <div id="phoneNumberDiv">
+        <label for="phoneNumber">Phone Number: 0245095233</label>
+      </div>
+
+      <label for="reference">Add Reference:</label>
+      <input type="text" id="reference" name="reference" placeholder="Enter payment reference" required>
+
       <button id="button" type="submit">Confirm Payment</button>
     </form>
     <p id="confirmationMessage" class="confirmation-message">Thank you! Your payment has been processed.</p>
   </main>
 
   <footer>
-    <p>Contact Us: BracesbyAdorina@gmail.com | +233 244266271</p>
+    <ul class="sns">
+      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+      <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+    </ul>
+    <p>Contact Us: calebowusu333@gmail.com | +233 244266271</p>
   </footer>
 
-<script>
-  // Initialize EmailJS
-  emailjs.init("2dYl2LeOZ3NN4aQuV"); // Replace with your EmailJS User ID
+  <button id="goTop" class="go-top">↑</button>
 
-  const paymentForm = document.getElementById('paymentForm');
-  const btn = document.getElementById('button');
-  const confirmationMessage = document.getElementById('confirmationMessage');
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    // Initialize EmailJS
+    (function () {
+      emailjs.init("2dYl2LeOZ3NN4aQuV"); // Replace with your actual EmailJS User ID
+    })();
 
-  paymentForm.addEventListener('submit', function (event) {
-    event.preventDefault(); // Prevent form reload
-    btn.textContent = 'Sending...'; // Update button text
+    const paymentForm = document.getElementById('paymentForm');
+    const confirmationMessage = document.getElementById('confirmationMessage');
+    const btn = document.getElementById('button');
 
-    // Retrieve form values
-    const amount = document.getElementById("amount").value;
-    const reference = document.getElementById("reference").value;
-    const location = document.getElementById("location").value;
+    paymentForm.addEventListener('submit', function(event) {
+      event.preventDefault();
 
-    // Validate input fields
-    if (!amount || !reference || !location) {
-      alert("Please fill in all required fields.");
-      btn.textContent = 'Confirm Payment';
-      return;
-    }
+      btn.value = 'Sending...';
 
-    // Prepare data for EmailJS
-    const formData = {
-      amount: amount,
-      reference: reference,
-      location: location,
-    };
+      const serviceID = 'default_service';
+      const templateID = 'template_8o08ytp';
 
-    // Send form using EmailJS
-    emailjs.send("default_service", "template_8o08ytp", formData)
-      .then(() => {
-        btn.textContent = 'Confirm Payment'; // Reset button text
-        confirmationMessage.style.display = 'block';
-        confirmationMessage.textContent = `Thank you! Your payment of GH₵‎${amount} has been processed. Delivery to ${location} is confirmed. Reference: ${reference}.`;
-        paymentForm.reset(); // Clear form fields
-
-        // Redirect to home page after 3 seconds
-        setTimeout(() => {
-          window.location.href = "./index.html";
-        }, 3000);
-      })
-      .catch((err) => {
-        console.error('Error:', err);
-        alert("Failed to send. Please try again.");
-        btn.textContent = 'Confirm Payment'; // Reset button text
-      });
-  });
-</script>
-
+      emailjs.sendForm(serviceID, templateID, this)
+        .then(() => {
+          btn.value = 'Confirm Payment';
+          confirmationMessage.style.display = 'block';
+          confirmationMessage.textContent = "Thank you! Your order has been submitted successfully.";
+          paymentForm.reset();
+        }, (err) => {
+          btn.value = 'Confirm Payment';
+          confirmationMessage.style.display = 'block';
+          confirmationMessage.textContent = "Error submitting your order. Please try again later.";
+        });
+    });
+  </script>
 
 </body>
 </html>
