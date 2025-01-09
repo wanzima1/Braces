@@ -233,7 +233,7 @@
       <label for="reference">Add Reference:</label>
       <input type="text" id="reference" name="reference" placeholder="Enter payment reference" required>
 
-      <button type="submit">Confirm Payment</button>
+      <button id="button" type="submit">Confirm Payment</button>
     </form>
     <p id="confirmationMessage" class="confirmation-message">Thank you! Your payment has been processed.</p>
   </main>
@@ -258,35 +258,27 @@
 
     const paymentForm = document.getElementById('paymentForm');
     const confirmationMessage = document.getElementById('confirmationMessage');
+    const btn = document.getElementById('button');
 
-    paymentForm.addEventListener('submit', (event) => {
+    paymentForm.addEventListener('submit', function(event) {
       event.preventDefault();
 
-      // Gather form data
-      const formData = {
-        location: document.getElementById('location').value,
-        phoneNumber: "0245095233", // Static phone number
-        reference: document.getElementById('reference').value,
-      };
+      btn.value = 'Sending...';
 
-      // Send the email using EmailJS
-      emailjs.send("default_service", "template_8o08yt", {
-        location: formData.location,
-        phoneNumber: formData.phoneNumber,
-        reference: formData.reference,
-        from_name: "Order Placed",
-      })
-      .then(
-        (response) => {
+      const serviceID = 'default_service';
+      const templateID = 'template_8o08ytp';
+
+      emailjs.sendForm(serviceID, templateID, this)
+        .then(() => {
+          btn.value = 'Confirm Payment';
           confirmationMessage.style.display = 'block';
           confirmationMessage.textContent = "Thank you! Your order has been submitted successfully.";
           paymentForm.reset();
-        },
-        (error) => {
+        }, (err) => {
+          btn.value = 'Confirm Payment';
           confirmationMessage.style.display = 'block';
           confirmationMessage.textContent = "Error submitting your order. Please try again later.";
-        }
-      );
+        });
     });
   </script>
 
