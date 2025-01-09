@@ -184,13 +184,14 @@
 
   // Select DOM elements
   const paymentForm = document.getElementById('paymentForm');
-  const confirmationMessage = document.getElementById('confirmationMessage');
   const btn = document.getElementById('button');
+  const confirmationMessage = document.getElementById('confirmationMessage');
 
+  // Add event listener for form submission
   paymentForm.addEventListener('submit', function (event) {
-    event.preventDefault(); // Prevent form from reloading the page
+    event.preventDefault(); // Prevent form reload
 
-    btn.textContent = 'Sending...'; // Update button text
+    btn.value = 'Sending...'; // Update button text during processing
 
     // Static data
     const momoNumber = "0578837373";
@@ -204,13 +205,13 @@
     // Validate inputs
     if (!amount || !reference || !location) {
       alert("Please fill in all required fields.");
-      btn.textContent = 'Confirm Payment';
+      btn.value = 'Confirm Payment';
       return;
     }
 
     if (amount <= 0) {
       alert("Amount must be greater than 0.");
-      btn.textContent = 'Confirm Payment';
+      btn.value = 'Confirm Payment';
       return;
     }
 
@@ -223,15 +224,16 @@
       location: location,
     };
 
-    // Send data using EmailJS
+    // EmailJS Service and Template IDs
     const serviceID = 'default_service'; // Replace with your EmailJS service ID
     const templateID = 'template_8o08ytp'; // Replace with your EmailJS template ID
 
+    // Send form using EmailJS
     emailjs.send(serviceID, templateID, formData)
       .then(() => {
-        btn.textContent = 'Confirm Payment'; // Reset button text
+        btn.value = 'Confirm Payment'; // Reset button text
         confirmationMessage.style.display = 'block';
-        confirmationMessage.textContent = `Thank you, Your payment of GH₵‎${amount} has been processed. Delivery to ${location} is confirmed. Reference: ${reference}.`;
+        confirmationMessage.textContent = `Thank you! Your payment of GH₵‎${amount} has been processed. Delivery to ${location} is confirmed. Reference: ${reference}.`;
         paymentForm.reset(); // Clear form fields
 
         // Reset static fields after clearing the form
@@ -245,12 +247,30 @@
       })
       .catch((err) => {
         console.error('Error:', err);
-        btn.textContent = 'Confirm Payment'; // Reset button text
+        btn.value = 'Confirm Payment'; // Reset button text
         confirmationMessage.style.display = 'block';
         confirmationMessage.textContent = "Error submitting your order. Please try again later.";
       });
   });
+
+  // Alternative snippet for simple form sending
+  document.getElementById('form').addEventListener('submit', function (event) {
+    event.preventDefault(); // Prevent form reload
+
+    btn.value = 'Sending...'; // Update button text during processing
+
+    // Simple EmailJS form sending
+    emailjs.sendForm('default_service', 'template_8o08ytp', this)
+      .then(() => {
+        btn.value = 'Send Email'; // Reset button text
+        alert('Sent!'); // Notify user
+      }, (err) => {
+        btn.value = 'Send Email'; // Reset button text
+        alert(JSON.stringify(err)); // Notify user of error
+      });
+  });
 </script>
+
 
 </body>
 </html>
