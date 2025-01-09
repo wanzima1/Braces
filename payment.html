@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -216,20 +215,21 @@
     <p class="info">
       Payment is accepted on delivery in Accra, Tema, and Kasoa. For pickups, visit Dansoman-Control. Customers outside Accra are required to make advance or half payments.
       <strong><br>Payment is accepted through MOMO and reference your name during payment (Reference should match the one provided here, for security reasons).<br>
-      <br>Amount: GH₵‎56<br></strong>
+      <br>
+        Name: Adorina.
+        Momo Number: 0244266271,
+        Amount: GH₵‎56
+        <br>
+      </strong>
     </p>
-    
 
-      <div id="phoneNumberDiv">
-        <label for="phoneNumber">Phone Number: 0245095233</label>
-      </div>
-
-    <div id="name">
-        <label for="nmae">Name: Adorina</label>
-      </div>
-    
-  
     <form id="paymentForm">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+      <label for="phoneNumber">Phone Number:</label>
+      <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Enter your phone number" required>
+
       <label for="location">Select Delivery Location:</label>
       <select id="location" name="location" required>
         <option value="" disabled selected>Choose Location</option>
@@ -238,8 +238,6 @@
         <option value="Kasoa">Kasoa</option>
         <option value="Outside Accra">Outside Accra</option>
       </select>
-
-      
 
       <label for="reference">Add Reference:</label>
       <input type="text" id="reference" name="reference" placeholder="Enter payment reference" required>
@@ -272,31 +270,30 @@
     const btn = document.getElementById('button');
 
     paymentForm.addEventListener('submit', function(event) {
-  event.preventDefault();
+      event.preventDefault();
 
-  btn.value = 'Sending...';
+      btn.value = 'Sending...';
 
-  const serviceID = 'default_service';
-  const templateID = 'template_8o08ytp';
+      const serviceID = 'default_service';
+      const templateID = 'template_8o08ytp';
 
-  emailjs.sendForm(serviceID, templateID, this)
-    .then(() => {
-      btn.value = 'Confirm Payment';
-      confirmationMessage.style.display = 'block';
-      confirmationMessage.textContent = "Thank you! Your order has been submitted successfully.";
-      paymentForm.reset();
+      emailjs.sendForm(serviceID, templateID, this)
+        .then(() => {
+          btn.value = 'Confirm Payment';
+          confirmationMessage.style.display = 'block';
+          confirmationMessage.textContent = "Thank you! Your order has been submitted successfully.";
+          paymentForm.reset();
 
-      // Redirect to the homepage after 3 seconds
-      setTimeout(() => {
-        window.location.href = './index.html'; // Update with the correct homepage path
-      }, 3000);
-    }, (err) => {
-      btn.value = 'Confirm Payment';
-      confirmationMessage.style.display = 'block';
-      confirmationMessage.textContent = "Error submitting your order. Please try again later.";
+          // Redirect to the homepage after 3 seconds
+          setTimeout(() => {
+            window.location.href = './index.html'; // Update with the correct homepage path
+          }, 3000);
+        }, (err) => {
+          btn.value = 'Confirm Payment';
+          confirmationMessage.style.display = 'block';
+          confirmationMessage.textContent = "Error submitting your order. Please try again later.";
+        });
     });
-});
-
   </script>
 
 </body>
