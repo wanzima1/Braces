@@ -265,7 +265,7 @@
 
       btn.value = 'Sending...';
 
-      const serviceID = 'default_service';
+      const serviceID = 'default_service'; // Replace with your actual service ID
       const templateID = 'template_8o08ytp';
 
       emailjs.sendForm(serviceID, templateID, this)
@@ -274,6 +274,9 @@
           confirmationMessage.style.display = 'block';
           confirmationMessage.textContent = "Thank you! Your order has been submitted successfully.";
           paymentForm.reset();
+          setTimeout(() => {
+            window.location.href = "./index.html"; // Redirect to home page
+          }, 4000); // 4-second delay before redirecting
         }, (err) => {
           btn.value = 'Confirm Payment';
           confirmationMessage.style.display = 'block';
